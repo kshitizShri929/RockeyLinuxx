@@ -232,3 +232,223 @@ podman ps
 ✅ **Scenario-based questions solve karein**  
 
 Agar aap **yeh questions confidently answer kar lein**, to **Rocky Linux interview crack** karna **100% possible hai!** 🔥🚀
+
+
+
+
+
+
+
+
+Aapke **Rocky Linux interview preparation** ke liye aur **in-depth questions** aur **real-world scenario-based** answers diye gaye hain. Yeh **advanced topics** aur **troubleshooting** bhi cover karega. 🚀  
+
+---  
+
+## **11. Boot Process & System Initialization**  
+
+### **Q23. Rocky Linux ka boot process explain karein?**  
+📌 **Answer:**  
+1. **BIOS/UEFI** – System ko start karta hai aur bootloader locate karta hai.  
+2. **GRUB2 (GRand Unified Bootloader)** – Kernel ko load karta hai.  
+3. **Kernel Initialization** – Hardware detection karta hai aur system processes start karta hai.  
+4. **Systemd Initialization** – Services aur targets load karta hai.  
+5. **Login Prompt** – System ready ho jata hai user login ke liye.  
+
+### **Q24. Kaise check karein ki last boot time kya tha?**  
+📌 **Answer:**  
+```bash
+uptime
+who -b
+```  
+
+### **Q25. Agar Rocky Linux boot nahi ho raha, to troubleshooting steps kya honge?**  
+📌 **Answer:**  
+1. **Boot logs check karein:**  
+   ```bash
+   journalctl -xb
+   ```  
+2. **GRUB2 menu open karein aur edit mode me jaakar single-user mode enable karein.**  
+3. **Emergency mode enter karein:**  
+   ```bash
+   systemctl emergency
+   ```  
+4. **Filesystem errors check karein:**  
+   ```bash
+   fsck -y /dev/sdX
+   ```  
+
+---
+
+## **12. Advanced User & Permission Management**  
+
+### **Q26. Kaise ek user ko specific sudo permission di jaye bina full access ke?**  
+📌 **Answer:**  
+```bash
+echo 'username ALL=(ALL) NOPASSWD: /bin/systemctl restart nginx' >> /etc/sudoers
+```  
+🔹 **Ye command sirf Nginx restart karne ki permission dega, full sudo access nahi.**  
+
+### **Q27. SetUID, SetGID, aur Sticky Bit kya hote hain?**  
+📌 **Answer:**  
+- **SetUID (chmod u+s)** – Ek file jab kisi user dwara run hoti hai, to **file ka owner permission ke saath execute hoti hai**.  
+- **SetGID (chmod g+s)** – Directory ke andar jo files create hoti hain, unka group **same** rahega.  
+- **Sticky Bit (chmod +t)** – **Shared directories me files sirf owner delete kar sakta hai.**  
+
+### **Q28. ACL (Access Control List) kya hai aur kaise set karein?**  
+📌 **Answer:**  
+ACL file/folder par **extra permissions** define karta hai.  
+```bash
+setfacl -m u:username:rwx /path/to/file
+getfacl /path/to/file
+```  
+
+---
+
+## **13. Storage & Disk Management**  
+
+### **Q29. Kaise ek naya partition create karein aur mount karein?**  
+📌 **Answer:**  
+1. **Partition banayein:**  
+   ```bash
+   fdisk /dev/sdb
+   ```  
+2. **File system format karein:**  
+   ```bash
+   mkfs.ext4 /dev/sdb1
+   ```  
+3. **Mount karein:**  
+   ```bash
+   mount /dev/sdb1 /mnt
+   ```  
+4. **Permanent mount ke liye /etc/fstab edit karein.**  
+
+### **Q30. LVM (Logical Volume Manager) ka use kaise karein?**  
+📌 **Answer:**  
+1. **Physical volume create karein:**  
+   ```bash
+   pvcreate /dev/sdb
+   ```  
+2. **Volume group create karein:**  
+   ```bash
+   vgcreate my_vg /dev/sdb
+   ```  
+3. **Logical volume create karein:**  
+   ```bash
+   lvcreate -L 10G -n my_lv my_vg
+   ```  
+4. **File system format karein aur mount karein.**  
+
+---
+
+## **14. Network Management & Troubleshooting**  
+
+### **Q31. Kaise check karein ki ek port open hai ya nahi?**  
+📌 **Answer:**  
+```bash
+ss -tulnp | grep 80
+netstat -tulnp | grep 80
+```  
+
+### **Q32. Network interface restart kaise karein?**  
+📌 **Answer:**  
+```bash
+nmcli networking off && nmcli networking on
+systemctl restart NetworkManager
+```  
+
+### **Q33. Kaise ek static IP set karein Rocky Linux me?**  
+📌 **Answer:**  
+```bash
+nmcli con mod eth0 ipv4.addresses 192.168.1.100/24
+nmcli con mod eth0 ipv4.gateway 192.168.1.1
+nmcli con mod eth0 ipv4.dns 8.8.8.8
+nmcli con mod eth0 ipv4.method manual
+nmcli con up eth0
+```  
+
+---
+
+## **15. Security Hardening & Intrusion Detection**  
+
+### **Q34. Kaise check karein ki last login kaunse user ka tha?**  
+📌 **Answer:**  
+```bash
+last -a | head -10
+```  
+
+### **Q35. SSH login sirf ek particular user ke liye kaise allow karein?**  
+📌 **Answer:**  
+1. **/etc/ssh/sshd_config** file open karein:  
+   ```bash
+   nano /etc/ssh/sshd_config
+   ```  
+2. **Ye line add karein:**  
+   ```bash
+   AllowUsers specific_user
+   ```  
+3. **Restart SSH service:**  
+   ```bash
+   systemctl restart sshd
+   ```  
+
+### **Q36. Fail2Ban ko enable kaise karein brute force attack se bachne ke liye?**  
+📌 **Answer:**  
+```bash
+dnf install fail2ban -y
+systemctl enable --now fail2ban
+```  
+
+---
+
+## **16. Virtualization & Containerization**  
+
+### **Q37. Rocky Linux me KVM install aur configure kaise karein?**  
+📌 **Answer:**  
+```bash
+dnf install @virt virt-install
+systemctl enable --now libvirtd
+virt-manager
+```  
+
+### **Q38. Podman aur Docker ka kya difference hai?**  
+📌 **Answer:**  
+- **Podman rootless mode support karta hai** jo Docker me nahi hai.  
+- **Docker ek daemon chalaata hai**, jabki **Podman direct CLI se work karta hai**.  
+- **Podman, OCI (Open Container Initiative) standards follow karta hai** jo Docker compatible hai.  
+
+### **Q39. Kaise ek simple Podman container run karein?**  
+📌 **Answer:**  
+```bash
+podman run -d --name my_container nginx
+podman ps
+```  
+
+---
+
+## **17. Performance Monitoring & Logging**  
+
+### **Q40. CPU aur Memory usage check karne ke best commands kaun-si hain?**  
+📌 **Answer:**  
+```bash
+top
+htop
+free -m
+vmstat 1 5
+```  
+
+### **Q41. System logs kaise analyze karein?**  
+📌 **Answer:**  
+```bash
+journalctl -xe
+tail -f /var/log/messages
+```  
+
+---
+
+### 🎯 **Final Tips for Cracking Rocky Linux Interview:**  
+✅ **Real-world scenarios par focus karein**  
+✅ **Daily command line practice karein**  
+✅ **Mock interviews aur self-explanation practice karein**  
+✅ **Security aur troubleshooting ke use-cases padhein**  
+
+Agar aap **yeh questions confidently answer kar sakein**, to **Rocky Linux interview crack** karna **100% possible hai!** 🔥🚀
