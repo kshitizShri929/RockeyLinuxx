@@ -1,4 +1,4 @@
-### **Rocky Linux User Management **  
+### Rocky Linux User Management 
 
 Rocky Linux is a **RHEL-based** distribution that provides a stable and enterprise-grade operating system. **User management** in Rocky Linux involves adding, modifying, deleting users, managing groups, and controlling permissions.  
 
