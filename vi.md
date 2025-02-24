@@ -37,8 +37,4 @@
 - `n` → Next match, `N` → Previous match  
 - `:%s/old/new/g` → Replace all  
 
-### **Miscellaneous**  
-- `:set nu` → Line numbers enable  
-- `:set nonu` → Line numbers disable  
 
-⚡ **Practice these to master Vi!** 🚀
