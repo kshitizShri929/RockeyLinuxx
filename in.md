@@ -1,6 +1,4 @@
-Yeh **Rocky Linux interview questions with answers** ka **detailed guide** hai. Ye **basic se advanced** level tak sab cover karega, jo aapke **deep understanding** aur **confidence** ke liye perfect hoga.  
 
----  
 
 # **1. Basic Questions (Fundamentals & Architecture)**  
 
