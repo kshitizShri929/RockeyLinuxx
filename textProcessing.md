@@ -1,8 +1,8 @@
-Here are some basic and practical **`sed`**, **`awk`**, and **`grep`** commands for text processing. You can try these on a sample text file.
+**`sed`**, **`awk`**, and **`grep`** commands for text processing. 
 
 ---
 
-## 📌 **1. `sed` (Stream Editor) Commands**
+##  **1. `sed` (Stream Editor) Commands**
 `sed` is used for modifying text in a file or input stream.
 
 ### **Replace text in a file**
@@ -30,7 +30,7 @@ _Prints lines 2 to 4._
 
 ---
 
-## 📌 **2. `awk` (Pattern Scanning & Processing) Commands**
+##  **2. `awk` (Pattern Scanning & Processing) Commands**
 `awk` is great for extracting and processing text.
 
 ### **Print a specific column**
@@ -90,4 +90,4 @@ _Excludes lines containing "word"._
 
 ---
 
-🔹 Try these commands and let me know if you need more advanced use cases! 🚀
+
